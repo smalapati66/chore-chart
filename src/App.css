@@ -1,42 +1,218 @@
+/* Reset / base */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Ant Design Layout full-screen */
+.ant-layout {
+  min-height: 100vh;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Header styling */
+.ant-layout-header {
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+}
+
+/* Content area */
+.ant-layout-content {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Inner content wrapper (optional but recommended) */
+.app-content {
+  width: 100%;
+  max-width: 1000px; /* adjust to taste */
+}
+
+/* Lists / cards spacing tweaks */
+.ant-card {
+  width: 100%;
+}
+
+.ant-list-item {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Utility */
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Chore cards layout */
+.chore-card {
+  width: 100%;
+}
+
+.chore-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.chore-left {
+  min-width: 0; /* allows text truncation */
+  flex: 1;
+}
+
+.chore-title {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chore-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.chore-assignment {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chore-label {
+  font-size: 12px;
+}
+
+.chore-tag {
+  margin: 0;
+}
+
+.chore-next-text {
+  font-size: 12px;
+  line-height: 1.1;
+}
+
+.chore-actions {
+  margin-top: 6px;
+}
+
+.chore-weekly-badge {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+.btn-active {
+  background-color: #187cf5;
+  border-color: #187cf5;
+}
+
+.btn-completed {
+  background-color: #2bb558;
+  border-color: #2bb558;
+}
+
+/* want to overwrite the ant styles here */
+.ant-btn-primary.btn-active {
+  background-color: #1677ff;
+  border-color: #1677ff;
+  color: #ffffff;
+}
+
+.ant-btn-primary.btn-completed {
+  background-color: #52c41a;
+  border-color: #52c41a;
+  color: #ffffff;
+}
+
+.ant-btn-primary.btn-completed:disabled,
+.ant-btn-primary.btn-completed[disabled] {
+  background-color: #52c41a;
+  border-color: #52c41a;
+  color: #ffffff !important;
+  opacity: 0.65; /* optional, keep “disabled” feel */
+}
+
+.chore-rotated {
+  animation: chorePulse 650ms ease-out;
+}
+
+@keyframes chorePulse {
+  0% {
+    transform: scale(1);
   }
-  to {
-    transform: rotate(360deg);
+  25% {
+    transform: scale(1.012);
+  }
+  60% {
+    transform: scale(1.006);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+.tag-flip {
+  animation: tagFlip 650ms ease-out;
+}
+
+@keyframes tagFlip {
+  0% {
+    transform: translateY(0) rotateX(0deg);
+  }
+  30% {
+    transform: translateY(-2px) rotateX(35deg);
+  }
+  60% {
+    transform: translateY(0) rotateX(0deg);
+  }
+  100% {
+    transform: translateY(0) rotateX(0deg);
   }
 }
 
-.card {
-  padding: 2em;
+@media (prefers-reduced-motion: reduce) {
+  .chore-rotated,
+  .tag-flip {
+    animation: none !important;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+
+
+/* Mobile: stack assigned/next under title */
+@media (max-width: 600px) {
+  .chore-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .chore-right {
+    align-items: flex-start;
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .ant-layout-header {
+    padding: 0 16px;
+  }
+
+  .ant-layout-content {
+    padding: 12px;
+  }
 }
