@@ -11,7 +11,6 @@ import {
   message,
   Avatar,
   Space,
-  Tooltip
 } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import "./App.css";
