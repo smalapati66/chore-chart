@@ -151,6 +151,34 @@ body,
   animation: chorePulse 650ms ease-out;
 }
 
+.user-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.user-name {
+  max-width: 140px; /* tweak */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.next-chip .user-name {
+  max-width: 120px; /* tweak */
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.chore-assignment,
+.chore-next {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
 @keyframes chorePulse {
   0% {
     transform: scale(1);
@@ -182,6 +210,19 @@ body,
   }
   100% {
     transform: translateY(0) rotateX(0deg);
+  }
+}
+
+/* Mobile: allow chips to wrap if needed */
+@media (max-width: 600px) {
+  .user-name {
+    max-width: 220px;
+  }
+
+  .chore-assignment,
+  .chore-next {
+    flex-wrap: wrap;
+    gap: 8px;
   }
 }
 
