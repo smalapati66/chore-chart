@@ -6,19 +6,19 @@ export const USER_PROFILES : Record<string, {
 }> = {
   "3547a8d5-4ceb-4cef-adcf-5149dad5a96c" : {
     name: "Sid",
-    avatarSrc: "/src/assets/avatars/Sid.jpg"
+    avatarSrc: "/avatars/Sid.jpg"
   },
   "7f8200b1-dc35-474e-816c-9f0084d570fa" : {
     name: "Diego",
-    avatarSrc: "/src/assets/avatars/Diego.jpg"
+    avatarSrc: "/avatars/Diego.jpg"
   },
   "8dd3db38-59b2-469f-a27d-02a3f6be95bd" : {
     name: "Clyde",
-    avatarSrc: "/src/assets/avatars/Clyde.jpg"
+    avatarSrc: "/avatars/Clyde.jpg"
   },
   "f4e347a8-27db-429b-9cf6-b53eae6158f7" : {
     name: "Tanure",
-    avatarSrc: "/src/assets/avatars/Tanure.jpg"
+    avatarSrc: "/avatars/Tanure.jpg"
   },
 }
 
