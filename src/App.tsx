@@ -8,13 +8,16 @@ import {
   Spin, 
   Alert, 
   Button, 
-  message 
+  message,
+  Avatar,
+  Space,
+  Tooltip
 } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import "./App.css";
 
 import { ensureAnonSession } from "./lib/auth";
-import { HOUSE_ID, USER_LABELS, USER_TO_NEXT } from "./config";
+import { HOUSE_ID, USER_PROFILES, USER_TO_NEXT } from "./config";
 
 import { fetchChores, type ChoreRow } from "./util/chores";
 import { applyPendingRotations } from "./util/rotations";
@@ -36,10 +39,33 @@ function App() {
 
   const formatUser = useMemo(() => {
     return (userId: string | null) => {
-      if (!userId) return "Unassigned";
-      return USER_LABELS[userId] ?? userId.slice(0, 8);
+      if (!userId) return null;
+      return USER_PROFILES[userId] ?? userId.slice(0, 8);
     };
   }, []);
+
+  const renderUserChip = (userId: string | null, size = 26) => {
+    if (!userId) {
+      return (
+        <Space size={8} align="center">
+          <Avatar size={size}>?</Avatar>
+        </Space>
+      );
+    }
+
+    const profile = USER_PROFILES[userId];
+    const name = profile?.name ?? userId.slice(0, 8);
+    const src = profile?.avatarSrc;
+
+    return (
+      <Space size={8} align="center">
+        <Avatar size={size} src={src}>
+          {name[0]?.toUpperCase()}
+        </Avatar>
+      </Space>
+    );
+  };
+
 
   async function reloadAll() {
     setLoading(true);
@@ -200,13 +226,16 @@ function App() {
                               color={displayCurId ? "blue" : "default"} 
                               className={`chore-tag ${rotatedId === chore.id ? "tag-flip" : ""}`}
                             >
-                              {formatUser(displayCurId)}
+                              {formatUser(displayCurId)?.name ?? ""}
                             </Tag>
+                            <div className="user-chip">
+                              {renderUserChip(displayCurId, 28)}
+                            </div>
                           </div>
 
                           <div className="chore-next">
                             <Text type="secondary" className="chore-next-text">
-                              Next: {displayNextId ? formatUser(displayNextId) : "—"}
+                              Next: {displayNextId ? formatUser(displayNextId)?.name : "—"}
                             </Text>
                           </div>
 
